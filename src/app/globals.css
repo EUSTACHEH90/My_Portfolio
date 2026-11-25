@@ -1,52 +1,42 @@
 @import "tailwindcss";
 
 :root {
-  --bg: #f5f2ff;
-  --surface: #ffffff;
-  --ink: #1a1740;
-  --muted: #55527a;
-  --line: #d9d4f0;
-  --coral: #e8384f;
-  --mint: #0f9f94;
+  --bg: #0b0605;
+  --surface: #160d09;
+  --ink: #f6efe8;
+  --muted: #b9a99c;
+  --line: #3a2419;
+  --accent: #ff6a2b;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #0e1330;
-    --surface: #161d44;
-    --ink: #f3efe6;
-    --muted: #a3a8cc;
-    --line: #2a3366;
-    --coral: #ff5d73;
-    --mint: #5ee6d8;
-  }
-}
-
-/* Expose les variables comme classes Tailwind : bg-bg, text-ink, text-muted... */
 @theme inline {
   --color-bg: var(--bg);
   --color-surface: var(--surface);
   --color-ink: var(--ink);
   --color-muted: var(--muted);
   --color-line: var(--line);
-  --color-coral: var(--coral);
-  --color-mint: var(--mint);
+  --color-accent: var(--accent);
   --font-display: var(--font-syne);
   --font-sans: var(--font-dm-sans);
   --font-mono: var(--font-jetbrains);
 }
 
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 body {
-  background: var(--bg);
+  background: radial-gradient(120% 90% at 85% 10%, #3b1a0b 0%, #130a06 45%, #070403 100%) fixed;
   color: var(--ink);
 }
 
+@keyframes orbit-spin { to { transform: rotate(360deg); } }
+@keyframes orbit-counter { to { transform: rotate(-360deg); } }
+@keyframes bob { 50% { transform: translateY(-14px); } }
+
+.orbit-spin { animation: orbit-spin var(--dur, 40s) linear infinite; }
+.orbit-counter { animation: orbit-counter var(--dur, 40s) linear infinite; }
+.bob { animation: bob 6s ease-in-out infinite; }
+
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
+  html { scroll-behavior: auto; }
+  .orbit-spin, .orbit-counter, .bob { animation: none; }
 }
