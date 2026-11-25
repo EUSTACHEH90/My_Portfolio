@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "motion/react";
+import { ParticleField } from "@/components/ui/ParticleField";
 
 const TITLE = "Je construis des produits web qui comptent.";
 
@@ -15,8 +16,10 @@ export function Hero() {
   let index = 0; // compteur global pour échelonner les lettres
 
   return (
-    <header className="mx-auto flex min-h-svh max-w-6xl flex-col justify-center px-6">
-      <h1
+     <header className="relative overflow-hidden">
+      <ParticleField />
+      <div className="relative z-10 mx-auto flex min-h-svh max-w-6xl flex-col justify-center px-6">
+        <h1
         aria-label={TITLE}
         className="max-w-[14ch] font-display text-[clamp(2.8rem,9vw,7rem)] font-extrabold leading-[1.02] tracking-tight"
       >
@@ -39,7 +42,7 @@ export function Hero() {
             ))}
           </span>
         ))}
-      </h1>
+        </h1>
 
       <motion.p
         className="mt-8 max-w-xl text-xl text-muted"
@@ -71,6 +74,7 @@ export function Hero() {
           </a>
         ))}
       </motion.div>
+      </div>
     </header>
   );
 }
