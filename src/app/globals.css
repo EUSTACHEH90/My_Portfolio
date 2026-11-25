@@ -1,0 +1,52 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #f5f2ff;
+  --surface: #ffffff;
+  --ink: #1a1740;
+  --muted: #55527a;
+  --line: #d9d4f0;
+  --coral: #e8384f;
+  --mint: #0f9f94;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0e1330;
+    --surface: #161d44;
+    --ink: #f3efe6;
+    --muted: #a3a8cc;
+    --line: #2a3366;
+    --coral: #ff5d73;
+    --mint: #5ee6d8;
+  }
+}
+
+/* Expose les variables comme classes Tailwind : bg-bg, text-ink, text-muted... */
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-coral: var(--coral);
+  --color-mint: var(--mint);
+  --font-display: var(--font-syne);
+  --font-sans: var(--font-dm-sans);
+  --font-mono: var(--font-jetbrains);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
