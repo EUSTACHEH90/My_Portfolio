@@ -15,7 +15,9 @@ import {
   SiTypescript,
 } from "react-icons/si";
 
-const links = ["Accueil", "Projets", "Services", "Blog", "Contact"];
+import Link from "next/link";
+import { nav } from "@/content/nav";
+import { MobileMenu } from "@/components/ui/MobileMenu";
 
 type Tech = { name: string; Icon: IconType; color: string; a: number };
 
@@ -73,29 +75,30 @@ export function Hero() {
 
       <div className="relative z-10 mx-auto max-w-6xl px-6">
         {/* Navigation en pilule */}
-        <nav className="flex items-center justify-between py-6">
+        <nav aria-label="Main" className="flex items-center justify-between py-6">
           <Logo />
           <ul className="hidden gap-1 rounded-full border border-white/10 bg-white/5 p-1 backdrop-blur md:flex">
-            {links.map((l, i) => (
-              <li key={l}>
-                <a
-                  href={`#${l.toLowerCase()}`}
-                  className={`block rounded-full px-4 py-2 text-sm transition ${
-                    i === 0 ? "text-accent" : "text-muted hover:text-ink"
-                  }`}
-                >
-                  {l}
-                </a>
-              </li>
-            ))}
-          </ul>
-          <a
-            href="/cv.pdf"
-            className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm backdrop-blur transition hover:border-accent"
-          >
-            Download my CV
-          </a>
-        </nav>
+          {nav.map((l, i) => (
+            <li key={l.href}>
+            <Link
+            href={l.href}
+            className={`block rounded-full px-4 py-2 text-sm transition ${
+              i === 0 ? "text-accent" : "text-muted hover:text-ink"
+            }`}
+            >
+          {l.label}
+        </Link>
+      </li>
+    ))}
+  </ul>
+  <a
+    href="/cv.pdf"
+    className="hidden rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm backdrop-blur transition hover:border-accent md:inline-block"
+  >
+    Download my CV
+  </a>
+  <MobileMenu />
+</nav>
 
         <div className="grid items-center gap-10 pb-16 pt-6 md:grid-cols-[1.2fr_1fr] md:pb-24">
           {/* Identité */}
@@ -196,7 +199,7 @@ export function Hero() {
             <div className="absolute left-1/2 top-1/2 size-[62%] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-full border-4 border-accent shadow-[0_30px_80px_-20px_rgba(255,106,43,.55)]">
               <Image
                 src="/avatar.jpg"
-                alt="Portrait de Prénom Nom"
+                alt="Portrait de Eustache HEMA"
                 fill
                 priority
                 sizes="(max-width: 768px) 60vw, 22rem"

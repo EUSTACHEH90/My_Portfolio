@@ -24,7 +24,7 @@ export const projects: Project[] = [
     role: "Designed the architecture, built the front end and back end, and deployed to production on Vercel.",
     result: "Cut load times in half and reached 2,000 active users within six months.",
     stack: ["Next.js", "React", "Node.js", "PostgreSQL"],
-    links: { live: "https://example.com", repo: "https://github.com/your-username/project" },
+    links: { live: "https://example.com", repo: "https://github.com/EustacheH90/project" },
   },
   {
     slug: "invoicing-api",

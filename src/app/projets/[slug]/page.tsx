@@ -12,7 +12,14 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const p = getProject(slug);
-  return p ? { title: `${p.title} – Your Name`, description: p.summary } : {};
+  return p
+    ? {
+        title: p.title,
+        description: p.summary,
+        alternates: { canonical: `/projets/${slug}` },
+        openGraph: { title: p.title, description: p.summary, url: `/projets/${slug}` },
+      }
+    : {};
 }
 
 export default async function ProjectPage({ params }: Props) {

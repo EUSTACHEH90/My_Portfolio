@@ -5,8 +5,9 @@ import { PostCard } from "@/components/ui/PostCard";
 import { Logo } from "@/components/ui/Logo";
 
 export const metadata: Metadata = {
-  title: "Blog – Your Name",
+  title: "Blog",
   description: "Articles on web development, product work and lessons learned.",
+  alternates: { canonical: "/blog" },
 };
 
 export default function BlogPage() {

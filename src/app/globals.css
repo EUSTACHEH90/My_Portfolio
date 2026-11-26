@@ -46,3 +46,12 @@ body {
   html { scroll-behavior: auto; }
   .orbit-spin, .orbit-counter, .bob { animation: none; }
 }
+
+body {
+  overflow-x: clip; /* évite tout défilement horizontal parasite sur mobile */
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
