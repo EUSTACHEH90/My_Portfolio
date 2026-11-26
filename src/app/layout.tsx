@@ -7,8 +7,8 @@ const dmSans = DM_Sans({ subsets: ["latin"], variable: "--font-dm-sans" });
 const jetbrains = JetBrains_Mono({ subsets: ["latin"], variable: "--font-jetbrains" });
 
 export const metadata: Metadata = {
-  title: "Eustache HEMA – Développeur full-stack",
-  description: "Développeur full-stack React, Next.js et Node.js. Projets, missions freelance et articles.",
+  title: "Eustache HEMA – Full-stack Developer",
+  description: "Full-stack Developer React, Next.js et Node.js. Projets, missions freelance et articles.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

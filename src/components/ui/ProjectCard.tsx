@@ -95,7 +95,7 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
         </ul>
 
         <span className="mt-5 font-medium text-accent transition group-hover:translate-x-1">
-          Voir le projet →
+            View project →
         </span>
       </div>
     </motion.li>

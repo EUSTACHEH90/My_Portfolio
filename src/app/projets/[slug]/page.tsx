@@ -12,7 +12,7 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const p = getProject(slug);
-  return p ? { title: `${p.title} – Prénom Nom`, description: p.summary } : {};
+  return p ? { title: `${p.title} – Your Name`, description: p.summary } : {};
 }
 
 export default async function ProjectPage({ params }: Props) {
@@ -21,14 +21,14 @@ export default async function ProjectPage({ params }: Props) {
   if (!p) notFound();
 
   const blocks = [
-    { label: "Le problème", text: p.problem },
-    { label: "Mon rôle", text: p.role },
+    { label: "The problem", text: p.problem },
+    { label: "My role", text: p.role },
   ];
 
   return (
     <main className="mx-auto max-w-4xl px-6 py-16">
       <Link href="/#projets" className="text-muted transition hover:text-accent">
-        ← Tous les projets
+        ← All projects
       </Link>
 
       <p className="mt-10 font-mono text-sm text-muted">
@@ -57,7 +57,7 @@ export default async function ProjectPage({ params }: Props) {
       </div>
 
       <section className="mt-6 rounded-2xl border border-accent/40 bg-accent/10 p-6">
-        <h2 className="font-display text-xl font-bold text-accent">Le résultat</h2>
+        <h2 className="font-display text-xl font-bold text-accent">The result</h2>
         <p className="mt-3 text-lg">{p.result}</p>
       </section>
 
@@ -69,7 +69,7 @@ export default async function ProjectPage({ params }: Props) {
             rel="noopener noreferrer"
             className="rounded-full bg-accent px-7 py-3 font-medium text-black transition hover:-translate-y-0.5 hover:shadow-[0_10px_30px_-8px_#ff6a2b]"
           >
-            Voir le site →
+            Visit the site →
           </a>
         )}
         {p.links.repo && (
@@ -79,7 +79,7 @@ export default async function ProjectPage({ params }: Props) {
             rel="noopener noreferrer"
             className="rounded-full border border-white/20 px-7 py-3 font-medium transition hover:-translate-y-0.5 hover:border-accent"
           >
-            Code source
+            Source code
           </a>
         )}
       </div>

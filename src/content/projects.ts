@@ -9,47 +9,46 @@ export type Project = {
   result: string;
   stack: string[];
   links: { live?: string; repo?: string };
-  cover?: string; // ex. "/projects/saas.png" (facultatif, sinon un visuel par défaut s’affiche)
+  cover?: string; // e.g. "/projects/saas.png" (optional, a default visual is shown otherwise)
 };
 
 export const projects: Project[] = [
   {
-    slug: "plateforme-saas",
-    title: "Plateforme SaaS de réservation",
-    kind: "Application web",
+    slug: "booking-saas-platform",
+    title: "Booking SaaS Platform",
+    kind: "Web application",
     year: 2025,
-    summary: "Un outil de réservation en ligne pour de petites entreprises de services.",
+    summary: "An online booking tool for small service businesses.",
     problem:
-      "Les équipes géraient leurs rendez-vous par téléphone et sur des tableurs, avec des doubles réservations et beaucoup de temps perdu.",
-    role: "Conception de l’architecture, développement front et back, mise en production sur Vercel.",
-    result: "Temps de chargement divisé par deux et 2 000 utilisateurs actifs en six mois.",
+      "Teams were managing appointments by phone and spreadsheets, which caused double bookings and wasted hours every week.",
+    role: "Designed the architecture, built the front end and back end, and deployed to production on Vercel.",
+    result: "Cut load times in half and reached 2,000 active users within six months.",
     stack: ["Next.js", "React", "Node.js", "PostgreSQL"],
-    links: { live: "https://example.com", repo: "https://github.com/votre-compte/projet" },
-    // cover: "/projects/mon-appli.png", pour ajouter une image sur les projets
+    links: { live: "https://example.com", repo: "https://github.com/your-username/project" },
   },
   {
-    slug: "api-facturation",
-    title: "API de facturation automatisée",
-    kind: "API et automatisation",
+    slug: "invoicing-api",
+    title: "Automated Invoicing API",
+    kind: "API and automation",
     year: 2024,
-    summary: "Une API qui génère, envoie et relance les factures sans intervention manuelle.",
-    problem: "Le service comptable passait plusieurs jours par mois à créer et relancer des factures à la main.",
-    role: "Conception de l’API, files de tâches, tests automatisés et documentation.",
-    result: "Quinze heures économisées par mois et 30 % de retards de paiement en moins.",
+    summary: "An API that creates, sends and follows up on invoices with no manual work.",
+    problem: "The accounting team spent several days each month creating invoices and chasing late payments by hand.",
+    role: "Designed the API, built the job queues, wrote automated tests and the documentation.",
+    result: "Saved fifteen hours a month and reduced late payments by 30%.",
     stack: ["Node.js", "Express", "Redis", "Docker"],
-    links: { repo: "https://github.com/votre-compte/projet" },
+    links: { repo: "https://github.com/your-username/project" },
   },
   {
-    slug: "bibliotheque-composants",
-    title: "Bibliothèque de composants",
+    slug: "component-library",
+    title: "Component Library",
     kind: "Open source",
     year: 2023,
-    summary: "Un jeu de composants React accessibles, documentés et prêts à l’emploi.",
-    problem: "Chaque projet de l’équipe réinventait ses boutons, formulaires et modales, avec des écarts d’accessibilité.",
-    role: "Création du projet, API des composants, tests et documentation Storybook.",
-    result: "Adoptée par quatre équipes et 150 étoiles sur GitHub.",
+    summary: "A set of accessible, documented React components that are ready to use.",
+    problem: "Every project on the team was reinventing its own buttons, forms and modals, with inconsistent accessibility.",
+    role: "Created the project, designed the component API, and wrote the tests and Storybook docs.",
+    result: "Adopted by four teams and earned 150 stars on GitHub.",
     stack: ["React", "TypeScript", "Storybook"],
-    links: { repo: "https://github.com/EUSTACHEH90/projet" },
+    links: { repo: "https://github.com/your-username/project" },
   },
 ];
 

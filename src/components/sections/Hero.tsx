@@ -92,7 +92,7 @@ export function Hero() {
             href="/cv.pdf"
             className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm backdrop-blur transition hover:border-accent"
           >
-            Télécharger mon CV
+            Download my CV
           </a>
         </nav>
 
@@ -100,14 +100,14 @@ export function Hero() {
           {/* Identité */}
           <div className="@container">
             <motion.p {...fade(0.1)} className="text-xl text-muted md:text-2xl">
-              Salut, moi c’est <span className="font-medium text-accent">Prénom</span>
+              Hey, i am <span className="font-medium text-accent">Eustache HEMA</span>
             </motion.p>
 
             <motion.h1
               {...fade(0.25)}
               className="mt-3 whitespace-nowrap font-display text-[length:6.4cqw] font-extrabold leading-[1.05] tracking-tight"
             >
-              Développeur full-stack
+              Full-stack Developer
             </motion.h1>
 
             <motion.p
@@ -124,13 +124,13 @@ export function Hero() {
                 href="#contact"
                 className="rounded-full bg-accent px-7 py-3 font-medium text-black transition hover:-translate-y-0.5 hover:shadow-[0_10px_30px_-8px_#ff6a2b]"
               >
-                Me recruter →
+                Contact Me →
               </a>
               <a
                 href="#projets"
                 className="rounded-full border border-white/20 px-7 py-3 font-medium transition hover:-translate-y-0.5 hover:border-accent"
               >
-                Voir mes projets
+                Explore My Project
               </a>
             </motion.div>
 
@@ -143,10 +143,10 @@ export function Hero() {
                 « Livré dans les temps, propre et facile à maintenir. Je retravaillerais avec lui sans hésiter. »
               </blockquote>
               <figcaption className="mt-4 flex items-center gap-3 text-sm">
-                <span className="grid size-9 place-items-center rounded-full bg-accent font-bold text-black">C</span>
+                <span className="grid size-9 place-items-center rounded-full bg-accent font-bold text-black">N</span>
                 <span>
-                  <strong className="block font-medium">Prénom du client</strong>
-                  <span className="text-muted">Fondatrice, Entreprise</span>
+                  <strong className="block font-medium">Nadya</strong>
+                  <span className="text-muted">Fondatrice, Zomkoom</span>
                 </span>
               </figcaption>
             </motion.figure>
