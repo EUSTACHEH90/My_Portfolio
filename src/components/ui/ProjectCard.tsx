@@ -63,7 +63,7 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
               className="object-cover"
             />
           ) : (
-            <span className="select-none font-display text-6xl font-extrabold text-accent/30 transition group-hover:scale-110 group-hover:text-accent/60">
+            <span className="select-none font-display text-6xl font-extrabold text-accent/70 transition group-hover:scale-110 group-hover:text-accent">
               {project.title
                 .split(" ")
                 .slice(0, 2)

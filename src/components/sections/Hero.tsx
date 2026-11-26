@@ -1,9 +1,6 @@
-"use client";
-
 import Image from "next/image";
-import { motion, useReducedMotion } from "motion/react";
+import Link from "next/link";
 import type { CSSProperties } from "react";
-import { Logo } from "@/components/ui/Logo";
 import type { IconType } from "react-icons";
 import {
   SiDocker,
@@ -14,14 +11,13 @@ import {
   SiTailwindcss,
   SiTypescript,
 } from "react-icons/si";
-
-import Link from "next/link";
-import { nav } from "@/content/nav";
+import { Logo } from "@/components/ui/Logo";
 import { MobileMenu } from "@/components/ui/MobileMenu";
+import { nav } from "@/content/nav";
 
 type Tech = { name: string; Icon: IconType; color: string; a: number };
 
-// k = rayon de l'anneau, en fraction de la taille du bloc ; a = position de départ (degrés)
+// k = rayon de l'anneau (fraction de la taille du bloc) ; a = position de départ en degrés
 const rings: { k: number; dur: string; dir: "normal" | "reverse"; items: Tech[] }[] = [
   {
     k: 0.48,
@@ -46,121 +42,121 @@ const rings: { k: number; dur: string; dir: "normal" | "reverse"; items: Tech[] 
   },
 ];
 
-function Bolt({ className }: { className: string }) {
+const delay = (s: number) => ({ "--d": `${s}s` }) as CSSProperties;
+
+function Bolt({ id, className }: { id: string; className: string }) {
   return (
     <svg viewBox="0 0 60 100" aria-hidden="true" className={`bob absolute ${className}`}>
       <defs>
-        <linearGradient id="bolt" x1="0" y1="0" x2="1" y2="1">
+        <linearGradient id={id} x1="0" y1="0" x2="1" y2="1">
           <stop offset="0" stopColor="#ffb347" />
           <stop offset="1" stopColor="#ff4d1a" />
         </linearGradient>
       </defs>
-      <path d="M32 0 L4 56 H24 L14 100 L56 38 H34 Z" fill="url(#bolt)" />
+      <path d="M32 0 L4 56 H24 L14 100 L56 38 H34 Z" fill={`url(#${id})`} />
     </svg>
   );
 }
 
 export function Hero() {
-  const reduce = useReducedMotion();
-  const fade = (delay: number) => ({
-    initial: reduce ? false : { opacity: 0, y: 20 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.8, delay, ease: [0.2, 0.9, 0.2, 1] as const },
-  });
-
   return (
     <header id="accueil" className="relative overflow-hidden">
-      <Bolt className="-left-6 top-[58%] h-44 rotate-[-18deg] opacity-90 drop-shadow-[0_0_30px_rgba(255,106,43,.6)]" />
-      <Bolt className="-right-4 top-24 h-56 rotate-[14deg] opacity-90 drop-shadow-[0_0_30px_rgba(255,106,43,.6)]" />
+      <Bolt
+        id="bolt-a"
+        className="hidden md:block -left-6 top-[58%] h-44 rotate-[-18deg] opacity-90 drop-shadow-[0_0_30px_rgba(255,106,43,.6)]"
+      />
+      <Bolt
+        id="bolt-b"
+        className="hidden md:block -right-4 top-24 h-56 rotate-[14deg] opacity-90 drop-shadow-[0_0_30px_rgba(255,106,43,.6)]"
+      />
 
       <div className="relative z-10 mx-auto max-w-6xl px-6">
-        {/* Navigation en pilule */}
+        {/* Navigation */}
         <nav aria-label="Main" className="flex items-center justify-between py-6">
           <Logo />
           <ul className="hidden gap-1 rounded-full border border-white/10 bg-white/5 p-1 backdrop-blur md:flex">
-          {nav.map((l, i) => (
-            <li key={l.href}>
-            <Link
-            href={l.href}
-            className={`block rounded-full px-4 py-2 text-sm transition ${
-              i === 0 ? "text-accent" : "text-muted hover:text-ink"
-            }`}
-            >
-          {l.label}
-        </Link>
-      </li>
-    ))}
-  </ul>
-  <a
-    href="/cv.pdf"
-    className="hidden rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm backdrop-blur transition hover:border-accent md:inline-block"
-  >
-    Download my CV
-  </a>
-  <MobileMenu />
-</nav>
+            {nav.map((l, i) => (
+              <li key={l.href}>
+                <Link
+                  href={l.href}
+                  className={`block rounded-full px-4 py-2 text-sm transition ${
+                    i === 0 ? "text-accent" : "text-muted hover:text-ink"
+                  }`}
+                >
+                  {l.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <a
+            href="/cv.pdf"
+            className="hidden rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm backdrop-blur transition hover:border-accent md:inline-block"
+          >
+            Download my CV
+          </a>
+          <MobileMenu />
+        </nav>
 
         <div className="grid items-center gap-10 pb-16 pt-6 md:grid-cols-[1.2fr_1fr] md:pb-24">
           {/* Identité */}
           <div className="@container">
-            <motion.p {...fade(0.1)} className="text-xl text-muted md:text-2xl">
-              Hey, i am <span className="font-medium text-accent">Eustache HEMA</span>
-            </motion.p>
+            <p className="enter text-xl text-muted md:text-2xl" style={delay(0.05)}>
+              Hi, i am <span className="font-medium text-accent">Eustache HEMA</span>
+            </p>
 
-            <motion.h1
-              {...fade(0.25)}
-              className="mt-3 whitespace-nowrap font-display text-[length:6.4cqw] font-extrabold leading-[1.05] tracking-tight"
+            <h1
+              className="enter mt-3 whitespace-nowrap font-display text-[length:7.2cqw] font-extrabold leading-[1.05] tracking-tight"
+              style={delay(0.1)}
             >
-              Full-stack Developer
-            </motion.h1>
+              Full-stack developer
+            </h1>
 
-            <motion.p
-              {...fade(0.4)}
-              className="mt-6 max-w-md text-base text-muted lg:max-w-none lg:whitespace-nowrap lg:text-[0.9375rem] lg:leading-relaxed"
+            <p
+              className="enter mt-6 max-w-md text-base text-muted xl:max-w-none xl:whitespace-nowrap xl:text-[0.9375rem] xl:leading-relaxed"
+              style={delay(0.2)}
             >
               An idea, a need, a project worth bringing to life? I turn it into a smooth,
-              <br className="hidden lg:block" />
+              <br className="hidden xl:block" />
               polished web experience, down to the details you don’t even notice.
-            </motion.p>
+            </p>
 
-            <motion.div {...fade(0.55)} className="mt-8 flex flex-wrap gap-3">
+            <div className="enter mt-8 flex flex-wrap gap-3" style={delay(0.3)}>
               <a
                 href="#contact"
                 className="rounded-full bg-accent px-7 py-3 font-medium text-black transition hover:-translate-y-0.5 hover:shadow-[0_10px_30px_-8px_#ff6a2b]"
               >
-                Contact Me →
+                Contact me →
               </a>
               <a
                 href="#projets"
                 className="rounded-full border border-white/20 px-7 py-3 font-medium transition hover:-translate-y-0.5 hover:border-accent"
               >
-                Explore My Project
+                View my projects
               </a>
-            </motion.div>
+            </div>
 
-            {/* Témoignage en verre dépoli */}
-            <motion.figure
-              {...fade(0.7)}
-              className="mt-12 max-w-sm rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-md"
+            {/* Témoignage */}
+            <figure
+              className="enter mt-12 max-w-sm rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-md"
+              style={delay(0.4)}
             >
               <blockquote className="text-sm text-muted">
-                « Livré dans les temps, propre et facile à maintenir. Je retravaillerais avec lui sans hésiter. »
+                “Delivered on time, clean code and easy to maintain. I’d happily work with him again.”
               </blockquote>
               <figcaption className="mt-4 flex items-center gap-3 text-sm">
-                <span className="grid size-9 place-items-center rounded-full bg-accent font-bold text-black">N</span>
+                <span className="grid size-9 place-items-center rounded-full bg-accent font-bold text-black">C</span>
                 <span>
                   <strong className="block font-medium">Nadya</strong>
-                  <span className="text-muted">Fondatrice, Zomkoom</span>
+                  <span className="text-muted">Founder, Zoomkoom</span>
                 </span>
               </figcaption>
-            </motion.figure>
+            </figure>
           </div>
 
           {/* Photo + orbites */}
-          <motion.div
-            {...fade(0.3)}
-            className="relative mx-auto aspect-square w-full max-w-[34rem] md:left-12 md:top-16 md:ml-auto md:mr-0"
-            style={{ "--size": "min(90vw, 34rem)" } as CSSProperties}
+          <div
+            className="enter relative mx-auto aspect-square w-full max-w-[34rem] md:left-12 md:top-16 md:ml-auto md:mr-0"
+            style={{ "--size": "min(90vw, 34rem)", "--d": "0.15s" } as CSSProperties}
           >
             {rings.map((r) => (
               <div
@@ -170,24 +166,24 @@ export function Hero() {
               >
                 <div
                   className="orbit-spin relative size-full rounded-full border border-white/10"
-                  style={{ "--dur": r.dur } as CSSProperties}
+                  style={{ "--dur": r.dur, "--dir": r.dir } as CSSProperties}
                 >
                   {r.items.map((t) => (
                     <div
                       key={t.name}
-                      className="absolute left-1/2 top-1/2 -ml-7 -mt-7 size-14"
+                      className="absolute left-1/2 top-1/2 -ml-6 -mt-6 size-12"
                       style={{
                         transform: `rotate(${t.a}deg) translateX(calc(var(--size) * ${r.k})) rotate(${-t.a}deg)`,
                       }}
                     >
                       <div
                         className="orbit-counter grid size-full place-items-center rounded-2xl bg-white shadow-xl"
-                        style={{ "--dur": r.dur } as CSSProperties}
+                        style={{ "--dur": r.dur, "--dir": r.dir } as CSSProperties}
                         role="img"
                         aria-label={t.name}
                         title={t.name}
                       >
-                        <t.Icon className="size-7" style={{ color: t.color }} aria-hidden="true" />
+                        <t.Icon className="size-6" style={{ color: t.color }} aria-hidden="true" />
                       </div>
                     </div>
                   ))}
@@ -195,18 +191,18 @@ export function Hero() {
               </div>
             ))}
 
-            {/* Photo dans un cadre rond */}
-            <div className="absolute left-1/2 top-1/2 size-[62%] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-full border-4 border-accent shadow-[0_30px_80px_-20px_rgba(255,106,43,.55)]">
+            <div className="absolute left-1/2 top-1/2 size-[58%] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-full border-4 border-accent shadow-[0_30px_80px_-20px_rgba(255,106,43,.55)]">
               <Image
                 src="/avatar.jpg"
-                alt="Portrait de Eustache HEMA"
+                alt="Portrait of Your Name"
                 fill
                 priority
-                sizes="(max-width: 768px) 60vw, 22rem"
+                quality={75}
+                sizes="(max-width: 768px) 55vw, 20rem"
                 className="origin-[50%_30%] scale-125 object-cover object-[50%_30%]"
               />
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </header>

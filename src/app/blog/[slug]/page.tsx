@@ -35,10 +35,16 @@ export default async function PostPage({ params }: Props) {
   const post = getPost(slug);
   if (!post) notFound();
 
-  const { default: Content } = await import(`@/content/blog/${slug}.mdx`);
+  // Si le fichier .mdx du slug n'existe pas : page 404 au lieu d'un build cassé
+  let Content: React.ComponentType;
+  try {
+    ({ default: Content } = await import(`@/content/blog/${slug}.mdx`));
+  } catch {
+    notFound();
+  }
 
   return (
-    <main className="mx-auto max-w-3xl px-6 py-8 pb-24">
+    <main id="main" className="mx-auto max-w-3xl px-6 py-8 pb-24">
       <header className="flex items-center justify-between">
         <Logo />
         <Link href="/blog" className="text-muted transition hover:text-accent">
