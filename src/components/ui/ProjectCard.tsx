@@ -31,7 +31,7 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
     <motion.li
       initial={reduce ? false : { opacity: 0, y: 28 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
+      viewport={{ once: true, amount: 0.1 }}
       transition={{ duration: 0.7, delay: index * 0.1, ease: [0.2, 0.9, 0.2, 1] }}
       className="list-none"
     >

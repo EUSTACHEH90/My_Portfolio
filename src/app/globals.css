@@ -32,8 +32,14 @@ body {
 @keyframes orbit-counter { to { transform: rotate(-360deg); } }
 @keyframes bob { 50% { transform: translateY(-14px); } }
 
-.orbit-spin { animation: orbit-spin var(--dur, 40s) linear infinite; }
-.orbit-counter { animation: orbit-counter var(--dur, 40s) linear infinite; }
+.orbit-spin {
+  animation: orbit-spin var(--dur, 40s) linear infinite;
+  animation-direction: var(--dir, normal);
+}
+.orbit-counter {
+  animation: orbit-counter var(--dur, 40s) linear infinite;
+  animation-direction: var(--dir, normal);
+}
 .bob { animation: bob 6s ease-in-out infinite; }
 
 @media (prefers-reduced-motion: reduce) {

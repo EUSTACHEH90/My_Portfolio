@@ -3,13 +3,44 @@
 import Image from "next/image";
 import { motion, useReducedMotion } from "motion/react";
 import type { CSSProperties } from "react";
+import type { IconType } from "react-icons";
+import {
+  SiDocker,
+  SiNextdotjs,
+  SiNodedotjs,
+  SiPostgresql,
+  SiReact,
+  SiTailwindcss,
+  SiTypescript,
+} from "react-icons/si";
 
 const links = ["Accueil", "Projets", "Services", "Blog", "Contact"];
 
-// k = rayon de l'anneau, en fraction de la taille du bloc
-const rings = [
-  { k: 0.48, dur: "45s", items: [{ l: "TS", a: 20 }, { l: "Next", a: 150 }, { l: "SQL", a: 260 }] },
-  { k: 0.34, dur: "32s", items: [{ l: "React", a: 80 }, { l: "Node", a: 230 }] },
+type Tech = { name: string; Icon: IconType; color: string; a: number };
+
+// k = rayon de l'anneau, en fraction de la taille du bloc ; a = position de départ (degrés)
+const rings: { k: number; dur: string; dir: "normal" | "reverse"; items: Tech[] }[] = [
+  {
+    k: 0.48,
+    dur: "40s",
+    dir: "normal",
+    items: [
+      { name: "TypeScript", Icon: SiTypescript, color: "#3178C6", a: 45 },
+      { name: "Next.js", Icon: SiNextdotjs, color: "#000000", a: 135 },
+      { name: "PostgreSQL", Icon: SiPostgresql, color: "#4169E1", a: 225 },
+      { name: "Docker", Icon: SiDocker, color: "#2496ED", a: 315 },
+    ],
+  },
+  {
+    k: 0.36,
+    dur: "40s",
+    dir: "reverse",
+    items: [
+      { name: "React", Icon: SiReact, color: "#61DAFB", a: 90 },
+      { name: "Node.js", Icon: SiNodedotjs, color: "#5FA04E", a: 210 },
+      { name: "Tailwind CSS", Icon: SiTailwindcss, color: "#06B6D4", a: 330 },
+    ],
+  },
 ];
 
 function Bolt({ className }: { className: string }) {
@@ -69,19 +100,19 @@ export function Hero() {
           {/* Identité */}
           <div className="@container">
             <motion.p {...fade(0.1)} className="text-xl text-muted md:text-2xl">
-              Hey, i am <span className="font-medium text-accent">Eustache HEMA</span>
+              Salut, moi c’est <span className="font-medium text-accent">Prénom</span>
             </motion.p>
 
             <motion.h1
               {...fade(0.25)}
               className="mt-3 whitespace-nowrap font-display text-[length:6.4cqw] font-extrabold leading-[1.05] tracking-tight"
             >
-              Full-stack Developer
+              Développeur full-stack
             </motion.h1>
 
             <motion.p
-            {...fade(0.4)}
-            className="mt-6 max-w-md text-base text-muted lg:max-w-none lg:whitespace-nowrap lg:text-[0.9375rem] lg:leading-relaxed"
+              {...fade(0.4)}
+              className="mt-6 max-w-md text-base text-muted lg:max-w-none lg:whitespace-nowrap lg:text-[0.9375rem] lg:leading-relaxed"
             >
               An idea, a need, a project worth bringing to life? I turn it into a smooth,
               <br className="hidden lg:block" />
@@ -121,12 +152,12 @@ export function Hero() {
             </motion.figure>
           </div>
 
-          {/* Avatar + orbites */}
+          {/* Photo + orbites */}
           <motion.div
-  {...fade(0.3)}
-  className="relative mx-auto aspect-square w-full max-w-[34rem] md:ml-auto md:mr-0 md:left-16 md:top-26"
-  style={{ "--size": "min(90vw, 34rem)" } as CSSProperties}
->
+            {...fade(0.3)}
+            className="relative mx-auto aspect-square w-full max-w-[34rem] md:left-12 md:top-16 md:ml-auto md:mr-0"
+            style={{ "--size": "min(90vw, 34rem)" } as CSSProperties}
+          >
             {rings.map((r) => (
               <div
                 key={r.k}
@@ -137,19 +168,22 @@ export function Hero() {
                   className="orbit-spin relative size-full rounded-full border border-white/10"
                   style={{ "--dur": r.dur } as CSSProperties}
                 >
-                  {r.items.map((it) => (
+                  {r.items.map((t) => (
                     <div
-                      key={it.l}
-                      className="absolute left-1/2 top-1/2 -ml-6 -mt-6 size-12"
+                      key={t.name}
+                      className="absolute left-1/2 top-1/2 -ml-7 -mt-7 size-14"
                       style={{
-                        transform: `rotate(${it.a}deg) translateX(calc(var(--size) * ${r.k})) rotate(${-it.a}deg)`,
+                        transform: `rotate(${t.a}deg) translateX(calc(var(--size) * ${r.k})) rotate(${-t.a}deg)`,
                       }}
                     >
                       <div
-                        className="orbit-counter grid size-full place-items-center rounded-xl border border-white/10 bg-surface/80 font-mono text-xs shadow-lg backdrop-blur"
+                        className="orbit-counter grid size-full place-items-center rounded-2xl bg-white shadow-xl"
                         style={{ "--dur": r.dur } as CSSProperties}
+                        role="img"
+                        aria-label={t.name}
+                        title={t.name}
                       >
-                        {it.l}
+                        <t.Icon className="size-7" style={{ color: t.color }} aria-hidden="true" />
                       </div>
                     </div>
                   ))}
@@ -157,14 +191,17 @@ export function Hero() {
               </div>
             ))}
 
-            <Image
-              src="/avatar.png"
-              alt="Portrait de Prénom Nom"
-              width={600}
-              height={800}
-              priority
-              className="absolute bottom-0 left-1/2 w-[62%] -translate-x-1/2 object-contain"
-            />
+            {/* Photo dans un cadre rond */}
+            <div className="absolute left-1/2 top-1/2 size-[62%] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-full border-4 border-accent shadow-[0_30px_80px_-20px_rgba(255,106,43,.55)]">
+              <Image
+                src="/avatar.jpg"
+                alt="Portrait de Prénom Nom"
+                fill
+                priority
+                sizes="(max-width: 768px) 60vw, 22rem"
+                className="origin-[50%_30%] scale-125 object-cover object-[50%_30%]"
+              />
+            </div>
           </motion.div>
         </div>
       </div>
