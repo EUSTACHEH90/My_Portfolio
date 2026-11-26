@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion, useReducedMotion } from "motion/react";
 import type { CSSProperties } from "react";
+import { Logo } from "@/components/ui/Logo";
 import type { IconType } from "react-icons";
 import {
   SiDocker,
@@ -66,14 +67,14 @@ export function Hero() {
   });
 
   return (
-    <header className="relative overflow-hidden">
+    <header id="accueil" className="relative overflow-hidden">
       <Bolt className="-left-6 top-[58%] h-44 rotate-[-18deg] opacity-90 drop-shadow-[0_0_30px_rgba(255,106,43,.6)]" />
       <Bolt className="-right-4 top-24 h-56 rotate-[14deg] opacity-90 drop-shadow-[0_0_30px_rgba(255,106,43,.6)]" />
 
       <div className="relative z-10 mx-auto max-w-6xl px-6">
         {/* Navigation en pilule */}
         <nav className="flex items-center justify-between py-6">
-          <a href="#" className="font-display text-xl font-extrabold">prénom.</a>
+          <Logo />
           <ul className="hidden gap-1 rounded-full border border-white/10 bg-white/5 p-1 backdrop-blur md:flex">
             {links.map((l, i) => (
               <li key={l}>
