@@ -17,6 +17,9 @@ export const metadata: Metadata = {
   applicationName: siteConfig.name,
   authors: [{ name: siteConfig.name, url: siteUrl }],
   creator: siteConfig.name,
+  verification: {
+    google: "1l07NSBO5NH96ndg2hvAP7Uq4kLvcqSDrwotitRlMC4",
+  },
   keywords: ["full-stack developer", "React", "Next.js", "Node.js", "freelance developer", "web development"],
   alternates: { canonical: "/" },
   openGraph: {
